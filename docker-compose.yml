@@ -34,3 +34,13 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: npm start
+  nginx_django:
+    image: nginx:latest
+    container_name: nginx_django
+    ports:
+      - 1337:80
+    volumes:
+      - ./library_back/src:/src
+      - ./library_back/config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - library_back
