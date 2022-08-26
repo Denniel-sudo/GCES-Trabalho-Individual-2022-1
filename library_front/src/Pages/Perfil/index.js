@@ -16,18 +16,22 @@ const Perfil = () => {
         resBooks();
       }, [sessionStorage.getItem('app-token')]);
 
-      const listBooks = books.map((book) =>
-        <Book
-            title={book.title}
-            author={book.author}
-            release_year={book.release_year}
-            renter={book.renter}
-            id={book.id}
-            is_rented={book.is_rented}
-            messageAlert={"Livro devolvido com sucesso"}
-            messageTernario={"Devolver livro"}
-        />
-      );
+      const listBooks = () => {
+        if (books.length > 0) {
+            books.map((book) =>
+                <Book
+                    title={book.title}
+                    author={book.author}
+                    release_year={book.release_year}
+                    renter={book.renter}
+                    id={book.id}
+                    is_rented={book.is_rented}
+                    messageAlert={"Livro alugado com sucesso"}
+                    messageTernario={"Alugar livro"}
+                />
+            )
+        }
+    };
 
 return(
     <Background>

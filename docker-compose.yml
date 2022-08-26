@@ -3,6 +3,7 @@ version: '3.9'
 services:
   db:
     image: postgres
+    container_name: library_db
     volumes:
       - ./data/db:/var/lib/postgresql
     env_file: ./library_back/.env
@@ -10,10 +11,26 @@ services:
       - 5432:5432
   library_back:
     restart: "always"
+    container_name: library_back
     build: ./library_back
     env_file: ./library_back/.env
-    command: bash -c "/library_back/entrypoint.sh"
+    volumes:
+      - ./library_back:/app
+    command: bash -c "/app/entrypoint.sh"
     ports:
       - 8000:8000
     depends_on:
       - "db"
+  library_front:
+    restart: "always"
+    container_name: library_front
+    build: ./library_front
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./library_front:/app
+      - '/app/node_modules'
+    stdin_open: true 
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start

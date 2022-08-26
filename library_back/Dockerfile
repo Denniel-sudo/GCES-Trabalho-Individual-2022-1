@@ -1,12 +1,8 @@
 FROM python:latest
 
-WORKDIR /library_back
+WORKDIR /app
 
-COPY . /library_back
-COPY accounts/ /library_back/accounts
-COPY books/ /library_back/books
-COPY src/ /library_back/src
-COPY entrypoint.sh /library_back
+COPY . .
 
 RUN apt-get install libpq-dev -y
 

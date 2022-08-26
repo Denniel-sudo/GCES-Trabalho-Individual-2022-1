@@ -15,8 +15,8 @@ const Home = () => {
         navigate('/donate');
     }
 
-    const resBooks = async () => {
-        await getBooks()
+    const resBooks = () => {
+        getBooks()
         .then((response) => setBooks(response?.data));
     };
 
@@ -24,23 +24,27 @@ const Home = () => {
         resBooks();
     }, []);
 
-      const listBooks = books.map((book) =>
-        <Book
-            title={book.title}
-            author={book.author}
-            release_year={book.release_year}
-            renter={book.renter}
-            id={book.id}
-            is_rented={book.is_rented}
-            messageAlert={"Livro alugado com sucesso"}
-            messageTernario={"Alugar livro"}
-        />
-      );
+    const listBooks = () => {
+        if (books.length > 0) {
+            books.map((book) =>
+                <Book
+                    title={book.title}
+                    author={book.author}
+                    release_year={book.release_year}
+                    renter={book.renter}
+                    id={book.id}
+                    is_rented={book.is_rented}
+                    messageAlert={"Livro alugado com sucesso"}
+                    messageTernario={"Alugar livro"}
+                />
+            )
+        }
+    };
 
 return(
     <Background>
             <h1>
-                Bem vindo a Biblioteca
+                Bem vindo a Bibliotecas
             </h1>
             <h1>
                 Livros disponíveis
