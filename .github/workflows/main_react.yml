@@ -19,11 +19,10 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: library_front
     
-    strategy: 
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -31,18 +30,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
           
-      - name: Run on library_back 
-        run: cd library_back
-      
       - name: Install dependencies
         run: npm install
         
-      - name: Run tests
-        run: npm test
-
       - name: Build
         run: npm run build
