@@ -34,9 +34,9 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: npm start
-  nginx_django:
+  nginx:
     image: nginx:latest
-    container_name: nginx_django
+    container_name: nginx
     ports:
       - 1337:80
     volumes:

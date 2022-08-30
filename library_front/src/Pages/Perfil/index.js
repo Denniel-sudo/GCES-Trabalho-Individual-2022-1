@@ -5,6 +5,7 @@ import Book from '../../Components/Book';
 
 
 const Perfil = () => {
+    const [token] = useState(sessionStorage.getItem('app-token'))
     const [books, setBooks] = useState([]);
 
     const resBooks = async () => {
@@ -14,7 +15,7 @@ const Perfil = () => {
 
     useEffect(() => {
         resBooks();
-      }, [sessionStorage.getItem('app-token')]);
+    }, [token]);
 
       const listBooks = () => {
         if (books.length > 0) {

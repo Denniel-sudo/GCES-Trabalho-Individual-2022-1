@@ -1,4 +1,4 @@
-import { React, useCallback, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { FaUserAlt, FaBook, FaCalendarAlt } from 'react-icons/fa';
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Donate = () => {
+  const [token] = useState(sessionStorage.getItem('app-token'))
   const [bookName, setBookName] = useState('');
   const [bookAuthor, setBookAuthor] = useState('');  
   const [bookReleaseYear, setBookReleaseYear] = useState();
@@ -31,10 +32,10 @@ const Donate = () => {
       return navigate('/');
     }
   }
-
-  useCallback(() => {
+  
+  useEffect(() => {
     createBook();
-  }, [sessionStorage.getItem('app-token')]);
+  }, [token]);
 
   return (
     <Background>
