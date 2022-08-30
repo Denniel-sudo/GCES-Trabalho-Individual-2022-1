@@ -34,12 +34,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          
+      - name: Run on library_back 
+        run: cd library_back
       
       - name: Install dependencies
         run: npm install
         
       - name: Run tests
-        run: npm tests
+        run: npm test
 
       - name: Build
         run: npm run build
