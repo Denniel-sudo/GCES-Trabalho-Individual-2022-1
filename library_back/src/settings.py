@@ -56,9 +56,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'https://git.heroku.com/gces-library-back.git']
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 ROOT_URLCONF = 'src.urls'
 
